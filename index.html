@@ -1,56 +1,59 @@
-<div id="sketch">
 
-    <canvas id="paint">
-        <script>
-            // create canvas element and append it to document body
-            var canvas = document.createElement('canvas');
-            document.body.appendChild(canvas);
+<html>
+    <div id="sketch">
 
-            // some hotfixes... ( ≖_≖)
-            document.body.style.margin = 0;
-            canvas.style.position = 'fixed';
+        <canvas id="paint">
+            <script>
+                // create canvas element and append it to document body
+                var canvas = document.createElement('canvas');
+                document.body.appendChild(canvas);
 
-            // get canvas 2D context and set him correct size
-            var ctx = canvas.getContext('2d');
-            resize();
+                // some hotfixes... ( ≖_≖)
+                document.body.style.margin = 0;
+                canvas.style.position = 'fixed';
 
-            // last known position
-            var pos = { x: 0, y: 0 };
+                // get canvas 2D context and set him correct size
+                var ctx = canvas.getContext('2d');
+                resize();
 
-            window.addEventListener('resize', resize);
-            document.addEventListener('mousemove', draw);
-            document.addEventListener('mousedown', setPosition);
-            document.addEventListener('mouseenter', setPosition);
+                // last known position
+                var pos = { x: 0, y: 0 };
 
-            // new position from mouse event
-            function setPosition(e) {
-            pos.x = e.clientX;
-            pos.y = e.clientY;
-            }
+                window.addEventListener('resize', resize);
+                document.addEventListener('mousemove', draw);
+                document.addEventListener('mousedown', setPosition);
+                document.addEventListener('mouseenter', setPosition);
 
-            // resize canvas
-            function resize() {
-            ctx.canvas.width = window.innerWidth;
-            ctx.canvas.height = window.innerHeight;
-            }
+                // new position from mouse event
+                function setPosition(e) {
+                pos.x = e.clientX;
+                pos.y = e.clientY;
+                }
 
-            function draw(e) {
-            // mouse left button must be pressed
-            if (e.buttons !== 1) return;
+                // resize canvas
+                function resize() {
+                ctx.canvas.width = window.innerWidth;
+                ctx.canvas.height = window.innerHeight;
+                }
 
-            ctx.beginPath(); // begin
+                function draw(e) {
+                // mouse left button must be pressed
+                if (e.buttons !== 1) return;
 
-            ctx.lineWidth = 5;
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = '#c0392b';
+                ctx.beginPath(); // begin
 
-            ctx.moveTo(pos.x, pos.y); // from
-            setPosition(e);
-            ctx.lineTo(pos.x, pos.y); // to
+                ctx.lineWidth = 5;
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = '#c0392b';
 
-            ctx.stroke(); // draw it!
-            }
-        </script>
-    </canvas>
+                ctx.moveTo(pos.x, pos.y); // from
+                setPosition(e);
+                ctx.lineTo(pos.x, pos.y); // to
 
-</div>
+                ctx.stroke(); // draw it!
+                }
+            </script>
+        </canvas>
+
+    </div>
+</html>
