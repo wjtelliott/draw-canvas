@@ -38,8 +38,8 @@
     
                     // new position from mouse event
                     function setPosition(e) {
-                    pos.x = e.clientX;
-                    pos.y = e.clientY;
+                    pos.x = e.clientX + canvas.getBoundingClientRect().left;
+                    pos.y = e.clientY + canvas.getBoundingClientRect().top;
                     }
     
                     // resize canvas
